@@ -15,4 +15,5 @@ class User < ApplicationRecord
 
   validates :password, length: { minimum: 6 }, format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/, message: 'Including half-width alphanumeric characters' }
 
+  has_many :items
 end
