@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
   def index
     @item = Item.new
-    @user = User.find(params[:user_id])
-    @items = @user.items.includes(:user)
+    # @user = User.find(params[:user_id])
+    # @items = @user.items.includes(:user)
+    @items = Item.includes(:user)
   end
 
   def new
