@@ -2,14 +2,22 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :description
-    validates :category_id, numericality: { other_than: 1 }
-    validates :status_id, numericality: { other_than: 1 }
-    validates :shipping_charges_id, numericality: { other_than: 1 }
-    validates :shipping_area_id, numericality: { other_than: 1 }
-    validates :delivery_days_id, numericality: { other_than: 1 }
+    validates :category_id
+    validates :status_id
+    validates :shipping_charges_id
+    validates :shipping_area_id
+    validates :delivery_days_id
     validates :price, inclusion: { in: 300..9_999_999 },
                       format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
     validates :image
+  end
+
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
+    validates :status_id
+    validates :shipping_charges_id
+    validates :shipping_area_id
+    validates :delivery_days_id
   end
 
   belongs_to :user
