@@ -1,8 +1,5 @@
 class ItemsController < ApplicationController
   def index
-    @item = Item.new
-    # @user = User.find(params[:user_id])
-    # @items = @user.items.includes(:user)
     @items = Item.includes(:user)
   end
 
@@ -11,12 +8,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @user = User.find(params[:user_id])
-    @item = @room.items.new(item_params)
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
-      @items = @user.items.includes(:user)
       render :new
     end
   end
