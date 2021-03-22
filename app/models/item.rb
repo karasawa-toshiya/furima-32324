@@ -1,5 +1,4 @@
 class Item < ApplicationRecord
-
   with_options presence: true do
     validates :name
     validates :description
@@ -8,7 +7,8 @@ class Item < ApplicationRecord
     validates :shipping_charges_id, numericality: { other_than: 1 }
     validates :shipping_area_id, numericality: { other_than: 1 }
     validates :delivery_days_id, numericality: { other_than: 1 }
-    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list'  }
+    validates :price, inclusion: { in: 300..9_999_999 },
+                      format: { with: /\A[0-9]+\z/, message: 'Price is not included in the list' }
     validates :image
   end
 

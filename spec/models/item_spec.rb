@@ -89,10 +89,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
 
-      it "priceが半角英語だけでは登録できないこと" do
-        @item.price = "threehundred"
+      it 'priceが半角英語だけでは登録できないこと' do
+        @item.price = 'threehundred'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not included in the list")
+        expect(@item.errors.full_messages).to include('Price is not included in the list')
       end
 
       it 'imageがないと出品できない' do
