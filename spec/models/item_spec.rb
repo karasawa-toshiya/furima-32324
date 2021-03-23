@@ -86,13 +86,19 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数字でないと出品できない' do
         @item.price = '３００'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not included in the list')
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it 'priceが半角英語だけでは登録できないこと' do
         @item.price = 'threehundred'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is not included in the list')
+        expect(@item.errors.full_messages).to include('Price is not a number')
+      end
+
+      it '値段が半角英数混合では登録できないこと' do
+        @item.price = '300yen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
 
       it 'imageがないと出品できない' do
