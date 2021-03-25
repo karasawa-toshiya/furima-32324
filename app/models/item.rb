@@ -7,7 +7,7 @@ class Item < ApplicationRecord
     validates :shipping_charge_id
     validates :shipping_area_id
     validates :delivery_day_id
-    validates :price, inclusion: { in: 300..9_999_999 },format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true}
+    validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true }
     validates :image
   end
 
