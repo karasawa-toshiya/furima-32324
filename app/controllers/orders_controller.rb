@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_root_path, only: [:index, :create]
+  before_action :sold_out_root_path, only: [:index]
 
   def index
     @item = Item.find(params[:item_id])
@@ -46,5 +47,9 @@ class OrdersController < ApplicationController
       redirect_to '/users/sign_in'
     end
   end
-  
+
+  def sold_out_root_path
+    @item = Item.find(params[:item_id])
+      redirect_to root_path if @item.order.present?
+  end
 end
