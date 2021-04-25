@@ -15,7 +15,6 @@ class OrdersController < ApplicationController
       @user_order.save
       redirect_to root_path
     else
-      # @item = Item.find(params[:item_id])
       render action: :index
     end
   end

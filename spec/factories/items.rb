@@ -4,9 +4,9 @@ FactoryBot.define do
     description { 'testsample' }
     category_id            { 5 }
     status_id              { 7 }
-    shipping_charges_id    { 3 }
+    shipping_charge_id     { 3 }
     shipping_area_id       { 20 }
-    delivery_days_id       { 2 }
+    delivery_day_id        { 2 }
     price                  { 300 }
     user
 
