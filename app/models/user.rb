@@ -19,4 +19,6 @@ class User < ApplicationRecord
                        format: { with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{7,}/, message: 'Including half-width alphanumeric characters' }
 
   has_many :items
+  has_many :orders
+  has_many :user_addresses
 end
