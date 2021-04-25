@@ -7,7 +7,7 @@ class UserOrder
     validates :shipping_area_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
     validates :address
-    validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/, message: 'Input only number and Within 11 digits' }
+    validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/, message: 'Input only number and Within 11 digits and Half-width only' }
     validates :token
     validates :user_id
     validates :item_id

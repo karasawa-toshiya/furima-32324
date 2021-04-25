@@ -63,10 +63,29 @@ RSpec.describe UserOrder, type: :model do
         expect(@user_order.errors.full_messages).to include("Phone number can't be blank")
       end
 
-      it '電話番号にはハイフンは不要で、11桁以内であること（09012345678となる）' do
+      it '電話番号が数字のみでないと登録できないこと(英数混合)' do
+        @user_order.phone_number = 'o9012345678'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Phone number Input only number and Within 11 digits and Half-width only")
+      end
+      
+      it '電話番号が数字のみでないと登録できないこと(ハイフンあり)' do
+        @user_order.phone_number = '090-1234-5678'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Phone number Input only number and Within 11 digits and Half-width only")
+      end
+
+      it '電話番号が全角数字だと登録できないこと' do
+        @user_order.phone_number = '０９０１２３４５６７８'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Phone number Input only number and Within 11 digits and Half-width only")
+      end
+
+
+      it '電話番号は11桁以内であること（09012345678となる）' do
         @user_order.phone_number = '090123456789'
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number Input only number and Within 11 digits")
+        expect(@user_order.errors.full_messages).to include("Phone number Input only number and Within 11 digits and Half-width only")
       end
 
       it 'user_idは空だと購入できないこと' do
