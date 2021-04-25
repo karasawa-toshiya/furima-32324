@@ -6,7 +6,7 @@ RSpec.describe UserOrder, type: :model do
   end
 
   describe '商品購入機能' do
-    context "商品購入できる時" do
+    context '商品購入できる時' do
       it 'すべての値が正しく入力されていれば購入できること' do
         expect(@user_order).to be_valid
       end
@@ -17,8 +17,8 @@ RSpec.describe UserOrder, type: :model do
       end
     end
 
-    context "商品購入できない時" do
-      it "tokenが空では登録できないこと" do
+    context '商品購入できない時' do
+      it 'tokenが空では登録できないこと' do
         @user_order.token = ''
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Token can't be blank")
@@ -57,7 +57,7 @@ RSpec.describe UserOrder, type: :model do
       it 'phone_numberは空だと購入できないこと' do
         @user_order.phone_number = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number can't be blank", "Phone number Input only number")
+        expect(@user_order.errors.full_messages).to include("Phone number can't be blank", 'Phone number Input only number')
       end
     end
   end
