@@ -1,20 +1,15 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
   before_action :move_to_root_path, only: [:index, :create]
-  before_action :sold_out_root_path, only: [:index]
+  before_action :sold_out_root_path, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @user_order = UserOrder.new
     redirect_to root_path if current_user == @item.user
   end
 
-  def new
-  end
-
   def create
     @user_order = UserOrder.new(order_params)
-    @item = Item.find(params[:item_id])
     if @user_order.valid?
       pay_item
       @user_order.save
@@ -41,10 +36,6 @@ class OrdersController < ApplicationController
       card: order_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
-  end
-
-  def move_to_root_path
-    redirect_to '/users/sign_in' unless user_signed_in?
   end
 
   def sold_out_root_path

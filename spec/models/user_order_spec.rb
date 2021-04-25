@@ -57,7 +57,25 @@ RSpec.describe UserOrder, type: :model do
       it 'phone_numberは空だと購入できないこと' do
         @user_order.phone_number = ''
         @user_order.valid?
-        expect(@user_order.errors.full_messages).to include("Phone number can't be blank", 'Phone number Input only number')
+        expect(@user_order.errors.full_messages).to include("Phone number can't be blank")
+      end
+
+      it '電話番号にはハイフンは不要で、11桁以内であること（09012345678となる）' do
+        @user_order.phone_number = '090123456789'
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Phone number Input only number and Within 11 digits")
+      end
+
+      it 'user_idは空だと購入できないこと' do
+        @user_order.user_id = ''
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'item_idは空だと購入できないこと' do
+        @user_order.item_id = ''
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
