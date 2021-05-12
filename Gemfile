@@ -61,6 +61,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #   gem 'rubocop', require: false
 # end
 
+group :production do
+  gem 'unicorn', '5.4.1'
+end
+
 gem 'pry-rails'
 gem 'devise'
 gem 'mini_magick'
